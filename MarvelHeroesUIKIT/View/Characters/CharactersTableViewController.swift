@@ -10,6 +10,7 @@ import Combine
 
 class CharactersTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
+
     @IBOutlet var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -42,7 +43,6 @@ class CharactersTableViewController: UIViewController, UITableViewDataSource, UI
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customTableCell", for: indexPath) as! CharacterTableViewCell
-//        let heroe = searchedHeroes[indexPath.row]
         let character = viewModel.characters[indexPath.row]
         let urlImage = character.thumbnail.path + "." + character.thumbnail.thumbnailExtension.rawValue
         cell.imageCell.setImage(url: urlImage)
@@ -59,12 +59,13 @@ class CharactersTableViewController: UIViewController, UITableViewDataSource, UI
     }
     
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let heroe = searchedHeroes[indexPath.row]
-//        let detailsView = DetailViewController()
-//        detailsView.heroe = heroe
-//        navigationController?.pushViewController(detailsView, animated: true)
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let character = viewModel.characters[indexPath.row]
+        let seriesVm = SeriesViewModel(character: character)
+        let seriesView = SeriesTableViewController()
+        seriesView.viewModel = seriesVm
+        navigationController?.pushViewController(seriesView, animated: true)
+    }
     
     
 //    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){

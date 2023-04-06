@@ -14,7 +14,6 @@ class CharacterTableViewCell: UITableViewCell {
     @IBOutlet weak var heart: UIImageView!
     @IBOutlet weak var name: UILabel!
     
-    
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,18 +21,16 @@ class CharacterTableViewCell: UITableViewCell {
         imageCell.layer.cornerRadius = 8
         
         let layer = CAGradientLayer()
-        layer.frame = imageCell.bounds
-        layer.colors = [UIColor.clear,UIColor.black]
-        layer.locations = [0.0, 1.0]
+        layer.frame = CGRect(x: 0, y: imageCell.bounds.height/2, width: imageCell.bounds.width, height: imageCell.bounds.height/2)
+        layer.colors = [UIColor.clear.cgColor,UIColor.black.cgColor]
+        layer.opacity = 0.7
         self.imageCell.layer.insertSublayer(layer, at: 0)
         
-//        name.textColor = UIColor.blue
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
     
 }
